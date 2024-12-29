@@ -1,0 +1,67 @@
+﻿@using BoilerplatePOC.Products.Dto
+@using BoilerplatePOC.Web.Models.Common.Modals
+@model ProductDto
+
+@{
+    Layout = null;
+}
+
+@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditProduct")))
+
+<form name="ProductEditForm" role="form" class="form-horizontal">
+    <input type="hidden" name="Id" value="@Model.Id" />
+
+    <div class="modal-body">
+        <!-- Product Name -->
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="name">@L("Name")</label>
+            <div class="col-md-9">
+                <input id="name" type="text" class="form-control" name="Name" value="@Model.Name" required maxlength="200">
+            </div>
+        </div>
+
+        <!-- Product Description -->
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="description">@L("Description")</label>
+            <div class="col-md-9">
+                <textarea id="description" class="form-control" name="Description" maxlength="1000">@Model.Description</textarea>
+            </div>
+        </div>
+
+        <!-- Product Price -->
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="price">@L("Price")</label>
+            <div class="col-md-9">
+                <input id="price" type="number" class="form-control" name="Price" value="@Model.Price" required step="0.01" min="0" />
+            </div>
+        </div>
+
+        <!-- Product SKU -->
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="sku">@L("SKU")</label>
+            <div class="col-md-9">
+                <input id="sku" type="text" class="form-control" name="SKU" value="@Model.SKU" required maxlength="50">
+            </div>
+        </div>
+
+        <!-- Product Stock Quantity -->
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="stockQuantity">@L("Quantity")</label>
+            <div class="col-md-9">
+                <input id="stockQuantity" type="number" class="form-control" name="StockQuantity" value="@Model.StockQuantity" required min="0">
+            </div>
+        </div>
+
+        <!-- Product Active Status -->
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="isActive">@L("IsActive")</label>
+            <div class="col-md-9">
+                <input id="isActive" type="checkbox" name="IsActive" value="true" @(Model.IsActive ? "checked" : "") />
+            </div>
+        </div>
+    </div>
+
+    @await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/Products/_EditModal.js" asp-append-version="true"></script>

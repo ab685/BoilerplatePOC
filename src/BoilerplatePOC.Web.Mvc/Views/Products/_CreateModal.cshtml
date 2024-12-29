@@ -1,0 +1,94 @@
+﻿@using BoilerplatePOC.Products
+@using BoilerplatePOC.Web.Models.Common.Modals
+@{
+    Layout = null;
+}
+
+<div class="modal fade" id="ProductCreateModal" tabindex="-1" role="dialog" aria-labelledby="ProductCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            @await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("CreateNewProduct")))
+
+            <!-- Form for Product Creation -->
+            <form id="productCreateForm" name="productCreateForm" role="form" class="form-horizontal">
+                <div class="modal-body">
+                    <!-- Product Name -->
+                    <div class="form-group row required">
+                        <label class="col-md-3 col-form-label">@L("Name")</label>
+                        <div class="col-md-9">
+                            <input type="text"
+                                   name="Name"
+                                   class="form-control"
+                                   required
+                                   maxlength="256"
+                                   minlength="2">
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">@L("Description")</label>
+                        <div class="col-md-9">
+                            <textarea name="Description"
+                                      class="form-control"
+                                      maxlength="1000"
+                                      rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="form-group row required">
+                        <label class="col-md-3 col-form-label">@L("Price")</label>
+                        <div class="col-md-9">
+                            <input type="number"
+                                   name="Price"
+                                   class="form-control"
+                                   required
+                                   step="0.01"
+                                   min="0">
+                        </div>
+                    </div>
+
+                    <!-- SKU -->
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">@L("SKU")</label>
+                        <div class="col-md-9">
+                            <input type="text"
+                                   name="SKU"
+                                   class="form-control"
+                                   maxlength="50">
+                        </div>
+                    </div>
+
+                    <!-- Stock Quantity -->
+                    <div class="form-group row required">
+                        <label class="col-md-3 col-form-label">@L("Quantity")</label>
+                        <div class="col-md-9">
+                            <input type="number"
+                                   name="StockQuantity"
+                                   class="form-control"
+                                   required
+                                   min="0">
+                        </div>
+                    </div>
+
+                    <!-- Is Active -->
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="CreateProductIsActive">@L("IsActive")</label>
+                        <div class="col-md-9">
+                            <input id="CreateProductIsActive"
+                                   type="checkbox"
+                                   name="IsActive"
+                                   value="true"
+                                   checked />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                @await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+            </form>
+        </div>
+    </div>
+</div>
